@@ -4,7 +4,7 @@
 vim.g.mapleader = " "
 local keymap = vim.keymap
 keymap.set("n", "<leader>jf", "<cmd>lua vim.lsp.buf.format({async = true})<CR>")
-keymap.set("v", "<leader>jf", "<cmd>lua vim.lsp.buf.format({async = true})<CR>")
+keymap.set("v", "<leader>jf", "<cmd>lua vim.lsp.buf.format({async = true})<CR>", { desc = "Java format" })
 
 keymap.set("n", "<leader>gE", function()
   LazyVim.lazygit({ cwd = LazyVim.root.git() })
@@ -14,13 +14,13 @@ keymap.set("n", "<leader>tc", function()
   if vim.bo.filetype == "java" then
     require("jdtls").test_class()
   end
-end)
+end, { desc = "Test the class (Java)" })
 
 keymap.set("n", "<leader>tm", function()
   if vim.bo.filetype == "java" then
     require("jdtls").test_nearest_method()
   end
-end)
+end, { desc = "Test nearest method (Java)" })
 
 keymap.set("n", "<leader>gg", "<cmd>lua vim.lsp.buf.hover()<CR>")
 keymap.set("n", "<leader>gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
